@@ -67,6 +67,9 @@ class PostAPI implements IPostAPI {
       final documents = await _db.listDocuments(
         databaseId: AppwriteConstants.databaseId,
         collectionId: AppwriteConstants.postCollectionId,
+        queries: [
+          Query.orderDesc('createdAt'),
+        ],
       );
       return documents.documents;
   }
