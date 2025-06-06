@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moveo/features/post/controller/post_controller.dart';
 import 'package:moveo/models/post_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:moveo/features/auth/controller/auth_controller.dart';
-
 
 class PostView extends ConsumerWidget {
   const PostView({super.key});
@@ -35,14 +33,12 @@ class PostView extends ConsumerWidget {
   }
 }
 
-class PostCard extends ConsumerWidget {
+class PostCard extends StatelessWidget {
   final Post post;
   const PostCard({super.key, required this.post});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentUser = ref.watch(currentUserAccountProvider).value;
-    
+  Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(8.0),
       child: Column(
@@ -112,20 +108,12 @@ class PostCard extends ConsumerWidget {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(
-                    post.likesCount > 0 ? Icons.favorite : Icons.favorite_border,
-                    color: post.likesCount > 0 ? Colors.red : null,
-                  ),
+                  icon: const Icon(Icons.favorite_border),
                   onPressed: () {
-                    if (currentUser != null) {
-                      ref.read(postControllerProvider.notifier).toggleLike(
-                        post.id,
-                        currentUser.$id,
-                      );
-                    }
+                    // TODO: Implement like functionality
                   },
                 ),
-                Text('${post.likesCount}'),
+                Text('${post.likes.length}'),
                 const SizedBox(width: 16),
                 IconButton(
                   icon: const Icon(Icons.comment),
@@ -133,7 +121,7 @@ class PostCard extends ConsumerWidget {
                     // TODO: Implement comment functionality
                   },
                 ),
-                Text('${post.commentsCount}'),
+                Text('${post.commentIds.length}'),
               ],
             ),
           ),

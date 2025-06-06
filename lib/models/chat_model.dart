@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 @immutable
 class ChatModel {
   final String id;
-  final String uid;
-  final String otherUid;
+  final String userId;
+  final String otherUserId;
   final String otherUserName;
   final String otherUserProfilePic;
   final String lastMessage;
@@ -12,8 +12,8 @@ class ChatModel {
 
   const ChatModel({
     required this.id,
-    required this.uid,
-    required this.otherUid,
+    required this.userId,
+    required this.otherUserId,
     required this.otherUserName,
     required this.otherUserProfilePic,
     required this.lastMessage,
@@ -22,8 +22,8 @@ class ChatModel {
 
   ChatModel copyWith({
     String? id,
-    String? uid,
-    String? otherUid,
+    String? userId,
+    String? otherUserId,
     String? otherUserName,
     String? otherUserProfilePic,
     String? lastMessage,
@@ -31,8 +31,8 @@ class ChatModel {
   }) {
     return ChatModel(
       id: id ?? this.id,
-      uid: uid ?? this.uid,
-      otherUid: otherUid ?? this.otherUid,
+      userId: userId ?? this.userId,
+      otherUserId: otherUserId ?? this.otherUserId,
       otherUserName: otherUserName ?? this.otherUserName,
       otherUserProfilePic: otherUserProfilePic ?? this.otherUserProfilePic,
       lastMessage: lastMessage ?? this.lastMessage,
@@ -43,8 +43,8 @@ class ChatModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'uid': uid,
-      'otherUid': otherUid,
+      'userId': userId,
+      'otherUserId': otherUserId,
       'otherUserName': otherUserName,
       'otherUserProfilePic': otherUserProfilePic,
       'lastMessage': lastMessage,
@@ -55,8 +55,8 @@ class ChatModel {
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     return ChatModel(
       id: map['id'] ?? '',
-      uid: map['uid'] ?? '',
-      otherUid: map['otherUid'] ?? '',
+      userId: map['userId'] ?? '',
+      otherUserId: map['otherUserId'] ?? '',
       otherUserName: map['otherUserName'] ?? '',
       otherUserProfilePic: map['otherUserProfilePic'] ?? '',
       lastMessage: map['lastMessage'] ?? '',
@@ -66,7 +66,7 @@ class ChatModel {
 
   @override
   String toString() {
-    return 'ChatModel(id: $id, uid: $uid, otherUid: $otherUid, otherUserName: $otherUserName, otherUserProfilePic: $otherUserProfilePic, lastMessage: $lastMessage, lastMessageTime: $lastMessageTime)';
+    return 'ChatModel(id: $id, userId: $userId, otherUserId: $otherUserId, otherUserName: $otherUserName, otherUserProfilePic: $otherUserProfilePic, lastMessage: $lastMessage, lastMessageTime: $lastMessageTime)';
   }
 
   @override
@@ -75,8 +75,8 @@ class ChatModel {
   
     return other is ChatModel &&
       other.id == id &&
-      other.uid == uid &&
-      other.otherUid == otherUid &&
+      other.userId == userId &&
+      other.otherUserId == otherUserId &&
       other.otherUserName == otherUserName &&
       other.otherUserProfilePic == otherUserProfilePic &&
       other.lastMessage == lastMessage &&
@@ -86,8 +86,8 @@ class ChatModel {
   @override
   int get hashCode {
     return id.hashCode ^
-      uid.hashCode ^
-      otherUid.hashCode ^
+      userId.hashCode ^
+      otherUserId.hashCode ^
       otherUserName.hashCode ^
       otherUserProfilePic.hashCode ^
       lastMessage.hashCode ^

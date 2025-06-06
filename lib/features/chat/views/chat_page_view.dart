@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moveo/features/chat/views/add_chat_page.dart';
 import 'package:moveo/features/chat/providers/chat_provider.dart';
-import 'package:moveo/features/auth/controller/auth_controller.dart';
-import 'package:moveo/features/chat/views/chat_view.dart';
 import 'package:moveo/models/chat_model.dart';
+import 'package:moveo/features/chat/views/chat_view.dart';
+import 'package:moveo/features/auth/controller/auth_controller.dart';
 
 class ChatPageView extends ConsumerStatefulWidget {
   const ChatPageView({super.key});
@@ -43,20 +43,11 @@ class _ChatPageViewState extends ConsumerState<ChatPageView> {
             actions: [
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () async {
-                  final chat = await Navigator.push(
+                onPressed: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AddChatPage()),
                   );
-                  if (chat != null && chat is ChatModel) {
-                    if (!context.mounted) return;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChatView(chat: chat),
-                      ),
-                    );
-                  }
                 },
               ),
             ],
@@ -76,12 +67,7 @@ class _ChatPageViewState extends ConsumerState<ChatPageView> {
                     ),
                     title: Text(chat.otherUserName),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatView(chat: chat),
-                        ),
-                      );
+                      // TODO: Implement chat view navigation or placeholder
                     },
                   );
                 },
